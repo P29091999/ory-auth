@@ -23,7 +23,41 @@ This is a NestJS-based authentication and authorization system that integrates w
 - **JWT Tokens**: After login, the system generates JWT tokens for session management.
 - **Integration with Ory Kratos**: The system uses Ory Kratos for handling identity management.
 
+
+
+```
+### Routes
+- Sign Up (POST /auth/register): Registers a new user with an email and role (admin or customer), and if the email already exists in Ory or the database, redirects to the login flow.
+
+- Login (GET /auth/login): Starts the Ory Kratos login flow and redirects users to the login page.
+
+- Verify Login (POST /auth/verify-login): Verifies the login flow and generates a JWT token for session management.
+
+Protected Routes:
+
+- GET /auth/protected: Accessible by any authenticated user with a valid JWT token.
+- GET /auth/admin/protected: Accessible only by users with the admin role.
+- GET /auth/customer/protected: Accessible only by users with the customer role.
+```
+
 ## Installation
 
 ```bash
 $ npm install
+
+```
+# Running the app
+## development
+```
+npm run start
+```
+
+## watch mode
+```
+npm run start:dev
+```
+
+## production mode
+```
+npm run start:prod
+```
